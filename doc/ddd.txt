@@ -1,0 +1,83 @@
+*ddd.txt*        Distraction-free writing for Neovim
+
+===============================================================================
+CONTENTS                                                    *ddd*
+
+  1. Commands...............................|ddd-commands|
+  2. Configuration..........................|ddd-config|
+  3. Events.................................|ddd-events|
+  4. Lua API................................|ddd-api|
+
+===============================================================================
+1. COMMANDS                                            *ddd-commands*
+
+                                                        *:DDD*
+:DDD                 Toggle focus mode.
+:DDD {dimension}     Open or resize focus mode.
+:DDD!                Leave focus mode.
+
+A dimension has the following format: >
+
+  [WIDTH][XOFFSET][x[HEIGHT][YOFFSET]]
+
+WIDTH and HEIGHT may be integers or percentages. Offsets start with `+` or
+`-`. Examples: >
+
+  :DDD 100
+  :DDD x30
+  :DDD 100x30
+  :DDD 50%+10%x80%-5%
+
+Use [count] CTRL-W `>`, `<`, `+`, and `-` to resize. CTRL-W `=` restores the
+requested dimensions. `:q`, `:tabclose`, changing tabs, or the toggle command
+leaves focus mode.
+
+===============================================================================
+2. CONFIGURATION                                         *ddd-config*
+
+Configure from Lua: >lua
+
+  require("ddd").setup({
+    width = 80,
+    height = "85%",
+    line_numbers = false,
+    background = "black",
+    decoration = {
+      elements = { "~" },
+      density = 0,
+    },
+    hooks = {
+      enter = function() end,
+      leave = function() end,
+    },
+  })
+<
+`margin_top` and `margin_bottom` can replace `height`. Values may be absolute
+or percentages.
+
+The `g:ddd_width`, `g:ddd_height`, `g:ddd_margin_top`,
+`g:ddd_margin_bottom`, `g:ddd_linenr`, `g:ddd_bg`,
+`g:ddd_decoration_elements`, and `g:ddd_decoration_density`
+variables can also be used from Vimscript.
+
+===============================================================================
+3. EVENTS                                                *ddd-events*
+
+After the corresponding Lua hook, these User events are emitted:
+
+  DDDEnter
+  DDDLeave
+
+===============================================================================
+4. LUA API                                                  *ddd-api*
+
+setup({opts})                 Merge configuration and return the module.
+open([dimension])             Enter focus mode.
+close()                       Leave focus mode.
+toggle([dimension])           Toggle, or resize when a dimension is supplied.
+resize([dimension])           Change dimensions; opens if inactive.
+is_active()                   Return whether focus mode is active.
+current()                     Return tab/window/dimension handles, or nil.
+
+===============================================================================
+vim:tw=78:ts=2:sw=2:et:ft=help:norl:
