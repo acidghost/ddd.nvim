@@ -19,7 +19,7 @@ not reload or modify your colorscheme.
 
 ```lua
 {
-  "your-name/ddd.nvim",
+  "acidghost/ddd.nvim",
   opts = {},
   keys = {
     { "<leader>z", "<cmd>DDD<cr>", desc = "Focus mode" },
@@ -30,7 +30,7 @@ not reload or modify your colorscheme.
 ### vim.pack (Neovim 0.12+)
 
 ```lua
-vim.pack.add({ "https://github.com/your-name/ddd.nvim" })
+vim.pack.add({ "https://github.com/acidghost/ddd.nvim" })
 require("ddd").setup()
 ```
 
