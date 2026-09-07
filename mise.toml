@@ -1,5 +1,5 @@
 [tools]
 just = "1.57.0"
 lua-language-server = "3.18.2"
-neovim = "0.12.4"
+neovim = "0.12.5"
 stylua = "2.5.2"
