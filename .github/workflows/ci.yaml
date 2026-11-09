@@ -8,7 +8,7 @@ on:
 
 env:
   # renovate: datasource=github-releases depName=jdx/mise
-  MISE_VERSION: 2026.10.19
+  MISE_VERSION: 2026.10.25
 
 permissions:
   contents: read
